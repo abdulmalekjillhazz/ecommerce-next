@@ -1,8 +1,5 @@
 .env
-.env.local
-node-modules
 node_modules/
 .next/
-.env
 .env.local
 .env.*.local
