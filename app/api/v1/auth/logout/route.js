@@ -1,0 +1,2 @@
+import dbConnect from '@/lib/db'; import User from '@/models/User.model'; import { clearAuthCookies } from '@/lib/auth'; import { requireUser } from '@/lib/api'; import { jsonError, jsonSuccess } from '@/utils/http';
+export async function POST(request) { try { await dbConnect(); const user = await requireUser(request); await User.findByIdAndUpdate(user._id, { $unset: { refreshToken: 1 } }); const response = jsonSuccess(200, null, 'Logged out successfully'); clearAuthCookies(response); return response; } catch (error) { return jsonError(error); } }

@@ -1,0 +1,2 @@
+import dbConnect from '@/lib/db'; import { refreshFromCookie, sanitizeUser } from '@/lib/api'; import { setAuthCookies } from '@/lib/auth'; import { jsonError, jsonSuccess } from '@/utils/http';
+export async function POST(request) { try { await dbConnect(); const { user, newAccessToken, newRefreshToken } = await refreshFromCookie(request); const response = jsonSuccess(200, sanitizeUser(user), 'Token refreshed'); setAuthCookies(response, newAccessToken, newRefreshToken); return response; } catch (error) { return jsonError(error); } }
