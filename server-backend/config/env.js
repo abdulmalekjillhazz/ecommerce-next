@@ -1,5 +1,5 @@
 const required = [
-  'MONGO_URI',
+  'MONGODB_URI',
   'JWT_ACCESS_SECRET',
   'JWT_REFRESH_SECRET',
   'JWT_ACCESS_EXPIRES_IN',
