@@ -1,6 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useProductStore } from '@/store/useProductStore';
 import ProductGrid from '@/components/product/ProductGrid';
 import Spinner from '@/components/common/Spinner';
@@ -17,65 +18,127 @@ export default function HomePage() {
   return (
     <div className="bg-[#FAF6EF]">
       {/* Hero */}
-      <section className="mx-auto max-w-7xl px-6 py-16 sm:py-24">
-        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+      <section className="relative overflow-hidden">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:py-28">
           {/* Left: copy */}
-          <div>
-            <span className="inline-block rounded-full bg-[#3F5B45]/10 px-4 py-1.5 text-sm font-medium text-[#3F5B45]">
-              Handpicked, not mass-produced
+          <div className="relative z-10">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#3F5B45]/20 bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-[#3F5B45]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#3F5B45]" />
+              Trusted by 12,000+ customers
             </span>
-            <h1 className="mt-5 font-serif text-4xl font-bold leading-tight text-[#2B2622] sm:text-5xl">
-              Things worth keeping,
+
+            <h1 className="mt-6 text-5xl font-bold leading-[1.05] tracking-tight text-[#2B2622] sm:text-6xl">
+              Things worth
               <br />
-              made by people who care
+              <span className="relative inline-block">
+                keeping.
+                <svg className="absolute -bottom-2 left-0 w-full" height="10" viewBox="0 0 200 10" preserveAspectRatio="none">
+                  <path d="M0,7 Q50,0 100,5 T200,4" fill="none" stroke="#B85C38" strokeWidth="4" strokeLinecap="round" />
+                </svg>
+              </span>
             </h1>
-            <p className="mt-5 max-w-md text-lg text-[#5A4F45]">
-              Every product on ShopMERN is checked by hand before it reaches your door. No filler,
-              no fast-fashion churn — just things built to last.
+
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-[#5A4F45]">
+              Every product is checked by hand before it reaches your door. No filler,
+              no fast-fashion churn — just things built to last, from people who care.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+
+            <div className="mt-9 flex flex-wrap gap-4">
               <Link
                 href="/products"
-                className="rounded-lg bg-[#B85C38] px-7 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#9c4c2e]"
+                className="group inline-flex items-center gap-2 rounded-full bg-[#2B2622] px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-[#2B2622]/20 transition hover:bg-[#B85C38]"
               >
                 Shop the collection
+                <span className="transition group-hover:translate-x-1">→</span>
               </Link>
               <Link
                 href="/products?featured=true"
-                className="rounded-lg border border-[#2B2622]/15 px-7 py-3 text-sm font-semibold text-[#2B2622] transition hover:bg-[#2B2622]/5"
+                className="inline-flex items-center rounded-full border-2 border-[#2B2622]/15 px-8 py-4 text-sm font-semibold text-[#2B2622] transition hover:border-[#2B2622]/30"
               >
-                See what's new
+                What's new
               </Link>
             </div>
 
-            {/* Trust strip */}
-            <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-[#2B2622]/10 pt-6 text-sm text-[#5A4F45]">
-              <span className="flex items-center gap-2">
-                <CheckIcon /> Secure checkout
-              </span>
-              <span className="flex items-center gap-2">
-                <CheckIcon /> Easy 30-day returns
-              </span>
-              <span className="flex items-center gap-2">
-                <CheckIcon /> Ships in 2–4 days
-              </span>
+            {/* Stats row */}
+            <div className="mt-12 grid grid-cols-3 gap-6 border-t border-[#2B2622]/10 pt-8">
+              <div>
+                <div className="text-2xl font-bold text-[#2B2622]">4.9★</div>
+                <div className="text-xs text-[#5A4F45]">Avg. rating</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-[#2B2622]">30-day</div>
+                <div className="text-xs text-[#5A4F45]">Free returns</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-[#2B2622]">2–4 days</div>
+                <div className="text-xs text-[#5A4F45]">Fast shipping</div>
+              </div>
             </div>
           </div>
 
-          {/* Right: image mosaic */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="aspect-[3/4] rounded-2xl bg-[#EFE7D8] shadow-sm" />
-            <div className="mt-8 aspect-[3/4] rounded-2xl bg-[#E3D9C4] shadow-sm" />
+          {/* Right: image with floating card */}
+          <div className="relative">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#E3D9C4] shadow-2xl shadow-[#2B2622]/10">
+              <Image
+                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80"
+                alt="Featured product"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+
+            {/* Floating rating card */}
+            <div className="absolute -bottom-6 -left-6 rounded-2xl bg-white p-4 shadow-xl">
+              <div className="flex items-center gap-3">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="h-8 w-8 rounded-full border-2 border-white bg-[#EFE7D8]" />
+                  ))}
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-[#2B2622]">2,400+ orders</div>
+                  <div className="text-xs text-[#5A4F45]">this month</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating badge */}
+            <div className="absolute -top-4 -right-4 flex h-20 w-20 rotate-6 items-center justify-center rounded-full bg-[#B85C38] text-center text-xs font-bold leading-tight text-white shadow-lg">
+              Free
+              <br />
+              shipping
+            </div>
           </div>
+        </div>
+
+        {/* Decorative background blob */}
+        <div className="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-[#B85C38]/5 blur-3xl" />
+      </section>
+
+      {/* Category strip */}
+      <section className="border-y border-[#2B2622]/10 bg-white">
+        <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-x-10 gap-y-4 px-6 py-6">
+          {['Electronics', 'Home & Living', 'Fashion', 'Beauty', 'Kids', 'Sports'].map((cat) => (
+            <Link
+              key={cat}
+              href={`/products?category=${cat.toLowerCase()}`}
+              className="text-sm font-medium text-[#5A4F45] transition hover:text-[#B85C38]"
+            >
+              {cat}
+            </Link>
+          ))}
         </div>
       </section>
 
       {/* Featured Products */}
-      <section className="mx-auto max-w-7xl px-6 pb-20">
-        <div className="mb-6 flex items-end justify-between">
+      <section className="mx-auto max-w-7xl px-6 py-20">
+        <div className="mb-8 flex items-end justify-between">
           <div>
-            <h2 className="font-serif text-2xl font-bold text-[#2B2622]">Featured picks</h2>
-            <p className="mt-1 text-sm text-[#5A4F45]">Customer favorites this month</p>
+            <span className="text-xs font-semibold uppercase tracking-wide text-[#B85C38]">
+              Curated for you
+            </span>
+            <h2 className="mt-2 text-3xl font-bold text-[#2B2622]">Featured picks</h2>
           </div>
           <Link
             href="/products"
@@ -85,20 +148,8 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          <ProductGrid products={products.slice(0, 8)} />
-        )}
+        {isLoading ? <Spinner /> : <ProductGrid products={products.slice(0, 8)} />}
       </section>
     </div>
-  );
-}
-
-function CheckIcon() {
-  return (
-    <svg className="h-4 w-4 text-[#3F5B45]" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-    </svg>
   );
 }
