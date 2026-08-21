@@ -23,10 +23,10 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#B85C38] text-sm font-bold text-white">
-            L
+            tz
           </span>
           <span className="text-xl font-bold tracking-tight text-[#2B2622]">
-            Larkspur
+            TARZAN
           </span>
         </Link>
 
