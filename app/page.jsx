@@ -80,7 +80,7 @@ export default function HomePage() {
           <div className="relative">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#E3D9C4] shadow-2xl shadow-[#2B2622]/10">
               <Image
-                src="https://www.pexels.com/photo/woman-shopping-for-fashionable-clothes-in-store-36730396"
+                src="https://www.pexels.com/r/eyJkZXN0IjoiaHR0cHM6Ly93d3cuaXN0b2NrcGhvdG8uY29tL3Bob3RvL291ci1mYXZvcml0ZS10aGluZy10by1kby1pcy1zaG9wcGluZy1nbTIxNTM1MTE3NDAtNTc0NDQ0NDI4P3V0bV9zb3VyY2U9cGV4ZWxzJnV0bV9tZWRpdW09YWZmaWxpYXRlJnV0bV9jYW1wYWlnbj1zcG9uc29yZWRfcGhvdG8mdXRtX2NvbnRlbnQ9c3JwX2lubGluZV9wb3J0cmFpdF9tZWRpYSZ1dG1fdGVybT1zaG9wcGluZyIsImRhdGEiOnsiZXhwZXJpbWVudHMiOnt9LCJwYWdlX2xvY2FsZSI6ImVuLVVTIiwicGFnZSI6InNlYXJjaF9yZXN1bHRzIiwicGFnZV92YXJpYW50IjoicGhvdG9zIiwibG9jYXRpb24iOiJncmlkIiwiYWRfcGFydG5lciI6ImdldHR5IiwiYWRfZm9ybWF0IjoibGFyZ2UiLCJhZF9wbGFjZW1lbnQiOiIzMCIsImFkX2NyZWF0aXZlIjoicGhvdG9fc2VhcmNoXzgiLCJhZF9hY3Rpb24iOiJjbGljayIsImFkX2ltcHJlc3Npb25faWQiOiIyOTE0NjU3NS0wMjU5LTQ2NzEtYjk0ZC01ZWE4ZTQ2NjAzNDciLCJtZWRpYV90eXBlIjoicGhvdG8iLCJxdWVyeSI6InNob3BwaW5nIn19/?h=1&du=b2e363b9-31a7-4034-83d9-f83df9a0744d&dx=1&ds=57fb25a9-ab1e-4a85-9401-6b1167c00855"
                 alt="Featured product"
                 fill
                 className="object-cover"
