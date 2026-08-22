@@ -80,7 +80,7 @@ export default function HomePage() {
           <div className="relative">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#E3D9C4] shadow-2xl shadow-[#2B2622]/10">
               <Image
-                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80"
+                src="https://www.pexels.com/photo/woman-shopping-for-fashionable-clothes-in-store-36730396"
                 alt="Featured product"
                 fill
                 className="object-cover"
