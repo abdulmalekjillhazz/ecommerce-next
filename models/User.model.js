@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const addressSchema = new mongoose.Schema(
   {
@@ -66,9 +67,24 @@ userSchema.pre('save', async function hashPassword(next) {
   next();
 });
 
+userSchema.methods.generateAccessToken = function generateAccessToken() {
+  return jwt.sign(
+    { id: this._id, role: this.role },
+    process.env.JWT_ACCESS_SECRET || process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_ACCESS_EXPIRES_IN || process.env.JWT_EXPIRES_IN || '15m' }
+  );
+};
+
+userSchema.methods.generateRefreshToken = function generateRefreshToken() {
+  return jwt.sign(
+    { id: this._id },
+    process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || process.env.JWT_EXPIRES_IN || '7d' }
+  );
+};
+
 userSchema.methods.comparePassword = function comparePassword(candidate) {
   return bcrypt.compare(candidate, this.password);
 };
 
-
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.models.User || mongoose.model('User', userSchema);

@@ -1,7 +1,7 @@
 const asyncHandler = require('../utils/asyncHandler');
 const ApiError = require('../utils/ApiError');
 const ApiResponse = require('../utils/ApiResponse');
-const User = require('../models/User.model');
+const User = require('../../models/User.model');
 const jwt = require('jsonwebtoken');
 const { setAuthCookies, clearAuthCookies } = require('../utils/generateTokens');
 
@@ -76,7 +76,7 @@ const refreshTokens = asyncHandler(async (req, res) => {
 
   let decoded;
   try {
-    decoded = jwt.verify(incomingToken, process.env.JWT_REFRESH_SECRET);
+    decoded = jwt.verify(incomingToken, process.env.JWT_REFRESH_SECRET || process.env.JWT_SECRET);
   } catch (err) {
     throw new ApiError(401, 'Invalid or expired refresh token');
   }

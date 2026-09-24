@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const asyncHandler = require('../utils/asyncHandler');
 const ApiError = require('../utils/ApiError');
-const User = require('../models/User.model');
+const User = require('../../models/User.model');
 
 // Verifies the accessToken cookie and attaches the authenticated user to req.user.
 // Does NOT auto-refresh here on purpose — refreshing is the client's job via
@@ -15,7 +15,7 @@ const protect = asyncHandler(async (req, res, next) => {
 
   let decoded;
   try {
-    decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
+    decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET || process.env.JWT_SECRET);
   } catch (err) {
     throw new ApiError(401, 'Session expired. Please refresh your token or log in again.');
   }

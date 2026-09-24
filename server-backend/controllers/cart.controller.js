@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const asyncHandler = require('../utils/asyncHandler');
 const ApiError = require('../utils/ApiError');
 const ApiResponse = require('../utils/ApiResponse');
-const Cart = require('../models/Cart.model');
-const Product = require('../models/Product.model');
+const Cart = require('../../models/Cart.model');
+const Product = require('../../models/Product.model');
 
 const sanitizeQuantity = (value) => {
   const quantity = Number(value);

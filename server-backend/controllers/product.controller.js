@@ -1,8 +1,8 @@
 const asyncHandler = require('../utils/asyncHandler');
 const ApiError = require('../utils/ApiError');
 const ApiResponse = require('../utils/ApiResponse');
-const Product = require('../models/Product.model');
-const Review = require('../models/Review.model');
+const Product = require('../../models/Product.model');
+const Review = require('../../models/Review.model');
 const mongoose = require('mongoose');
 
 // GET /api/v1/products?page=&limit=&search=&category=&minPrice=&maxPrice=&sort=

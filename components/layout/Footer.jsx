@@ -18,7 +18,7 @@ export default function Footer() {
 
         <nav className="flex flex-col gap-2 text-sm">
           {links.map((item) => (
-            
+            <a
               key={item}
               href={`#${item.toLowerCase()}`}
               className="group relative w-fit text-neutral-400 hover:text-white transition-colors"

@@ -1,9 +1,7 @@
 const required = [
   'MONGODB_URI',
-  'JWT_ACCESS_SECRET',
-  'JWT_REFRESH_SECRET',
-  'JWT_ACCESS_EXPIRES_IN',
-  'JWT_REFRESH_EXPIRES_IN',
+  'JWT_SECRET',
+  'JWT_EXPIRES_IN',
 ];
 
 const validateEnv = () => {

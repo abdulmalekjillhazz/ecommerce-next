@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const asyncHandler = require('../utils/asyncHandler');
 const ApiError = require('../utils/ApiError');
 const ApiResponse = require('../utils/ApiResponse');
-const Order = require('../models/Order.model');
-const Product = require('../models/Product.model');
+const Order = require('../../models/Order.model');
+const Product = require('../../models/Product.model');
 
 // POST /api/v1/orders
 const createOrder = asyncHandler(async (req, res) => {

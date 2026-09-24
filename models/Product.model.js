@@ -43,7 +43,6 @@ const productSchema = new mongoose.Schema(
       type: Number,
       validate: {
         validator: function (value) {
-          // Only enforced when a discount price is actually set.
           return value == null || value < this.price;
         },
         message: 'Discount price must be lower than the regular price',
@@ -72,17 +71,15 @@ const productSchema = new mongoose.Schema(
       default: 0,
       min: 0,
       max: 5,
-      set: (val) => Math.round(val * 10) / 10, // one decimal place
+      set: (val) => Math.round(val * 10) / 10,
     },
     ratingsCount: { type: Number, default: 0 },
     isFeatured: { type: Boolean, default: false },
-    isActive: { type: Boolean, default: true }, // soft-delete flag
+    isActive: { type: Boolean, default: true },
   },
   { timestamps: true }
 );
 
-// Auto-generate a URL-safe slug from the name, guaranteed unique by
-// appending a short random suffix if a collision is detected.
 productSchema.pre('save', async function generateSlug(next) {
   if (!this.isModified('name')) return next();
 
@@ -96,7 +93,6 @@ productSchema.pre('save', async function generateSlug(next) {
   let counter = 1;
   const Product = this.constructor;
 
-  // Loop until we find a slug that isn't already taken by another product.
   while (await Product.exists({ slug, _id: { $ne: this._id } })) {
     slug = `${base}-${counter}`;
     counter += 1;
@@ -106,7 +102,6 @@ productSchema.pre('save', async function generateSlug(next) {
   next();
 });
 
-// Text index powers the `search` query param on GET /products.
 productSchema.index({ name: 'text', description: 'text' });
 
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.models.Product || mongoose.model('Product', productSchema);
